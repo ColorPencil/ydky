@@ -1,0 +1,207 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.hydee</groupId>
+    <artifactId>ydky</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>ydky</name>
+    <description>易点快药售药机接口平台</description>
+    <url>http://maven.apache.org</url>
+    
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <druid.version>1.1.12</druid.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        
+        <!-- thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+        </dependency>
+        
+        <!--  springboot整合 redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        
+        <!-- 数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        
+        <!-- 事务切面AOP及Aspect编程 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+        
+        <!-- oracle数据库包 -->
+        <dependency>
+            <groupId>cn.easyproject</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>12.1.0.2.0</version>
+        </dependency>
+        
+        <!-- sqlserver数据库包 -->
+        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/sqljdbc4 -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>4.0</version>
+        </dependency>
+
+        <!-- httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        
+        <!-- JSON 相关包 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+        
+        <!-- SpringSecurity依赖 -->
+       <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-security</artifactId>
+       </dependency>
+
+        <!-- 分页插件pagehelper -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-autoconfigure</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+	</dependencies>
+    
+    <repositories>
+        <repository>
+            <id>Sonatype</id>
+            <name>Sonatype Repository</name>
+            <url>http://repository.sonatype.org/content/groups/public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- lib分离 -->
+                <configuration>
+                    <layout>ZIP</layout>
+                    <excludeGroupIds>
+                        org.bytedeco.javacpp-presets,org.bytedeco,org.mybatis.spring.boot,org.springframework.boot,org.thymeleaf.extras,com.alibaba,org.springframework,
+                        org.aspectj,cn.easyproject,org.apache.httpcomponents,com.fasterxml.jackson.core,com.github.pagehelper,commons-lang,commons-io,commons-net,commons-fileupload,
+                        org.apache.poi,com.corundumstudio.socketio,com.github.penggle,antlr,org.attoparser,com.fasterxml,commons-codec,org.apache.commons,com.github.virtuald,
+                        dom4j,com.jhlabs,org.hibernate.common,org.hibernate,com.zaxxer,com.fasterxml.jackson.datatype,org.jboss,org.javassist,javax.servlet,javax.transaction,org.jboss.logging,
+                        org.slf4j,org.apache.logging.log4j,log4j,ch.qos.logback,org.mybatis,io.netty,org.slf4j,org.yaml,org.springframework.data,org.springframework.security,
+                        javax.xml.stream,org.thymeleaf,org.apache.tomcat.embed,org.unbescape,javax.validation,org.apache.xmlbeans,commons-collections,commons-beanutils,org.hibernate.javax.persistence,
+                        javax.xml.stream,com.fasterxml.jackson.module,stax,com.github.jsqlparser,javax.annotation,com.auth0,org.hibernate.validator,com.google.code.gson,org.bouncycastle,
+                        io.projectreactor,org.reactivestreams,io.lettuce,com.google.zxing,org.jbarcode,com.github.jai-imageio,com.beust
+                    </excludeGroupIds>
+                    <fork>true</fork>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+			</plugin>
+            <!-- myBatis auto generate -->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+            </plugin>
+		</plugins>
+	</build>
+</project>
