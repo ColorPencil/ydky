@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hydee.ydky.dao.StockMapper">
+
+    <resultMap id="BaseResultMap" type="com.hydee.ydky.entity.Stock">
+        <result column="BUSNO" property="busno" jdbcType="VARCHAR"></result>
+        <result column="WAREID" property="wareid" jdbcType="VARCHAR"></result>
+        <result column="WAREQTY" property="wareqty" jdbcType="DECIMAL"></result>
+    </resultMap>
+
+    <select id="selectStock" resultMap="BaseResultMap" resultType="java.util.List">
+        SELECT   A.busno,A.wareid,SUM(A.wareqty - A.awaitqty) AS SUMQTY
+        FROM dbo.u_store_C A ,dbo.c_zone B ,dbo.c_stall C
+        WHERE A.busno = B.busno AND C.zoneno = B.zoneno AND C.stalltype ='11'
+        GROUP BY A.BUSNO,A.WAREID
+    </select>
+
+    <insert id="specialOutage">
+        INSERT INTO D_DCM_SALE_M (BUSNO, DCMNO, BILLNO)
+        VALUES (#{busno, jdbcType=VARCHAR}, #{dcmno, jdbcType=VARCHAR}, #{billno, jdbcType=VARCHAR})
+
+        INSERT INTO D_DCM_SALE_C (BILLNO, ROWID, WAREID, WAREQTY, SALEPRICE)
+        <foreach collection="detail" item="item" index="index" separator="union all">
+            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR}, #{item.wareqty, jdbcType=DECIMAL}, #{item.salePrice, jdbcType=DECIMAL}
+        </foreach>
+    </insert>
+
+</mapper>

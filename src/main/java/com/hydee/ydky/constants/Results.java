@@ -87,8 +87,11 @@ public enum Results {
 
     THE_BUSIID_ALREADY_EXISTED(660,"该零售门店id已存在，请重新输入！"),
 
-    THE_HSOPITAL_STORE_AUTHORIZATION_ALREADY_EXISTS(670,"该信息已存在，若需修改请点击修改按钮进行修改！"); 
+    THE_HSOPITAL_STORE_AUTHORIZATION_ALREADY_EXISTS(670,"该信息已存在，若需修改请点击修改按钮进行修改！"),
 
+    /*************************售药机模块***************************************/
+    MACHINE_DCM_TYPE_NOT_fOUND(680,"传入的type不正确！"),
+    MACHINE_DCM_TYPE_NOT_UPDATEED(690,"没有更新的数据！");
 
     private Integer code;
     private String msg;

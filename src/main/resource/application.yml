@@ -70,3 +70,12 @@ server:
     sign:
       expired: 300
       enabled: false
+
+spring:
+  datasource:
+    #核心池大小
+    corePoolSize: 5
+    #最大池大小
+    maxPoolSize: 10
+    #QueueCapacity容量
+    queueCapacity: 25
