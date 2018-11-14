@@ -18,16 +18,16 @@ public class APIMachineServiceImpl implements APIMachineService {
     MachineMapper machineMapper;
 
     @Override
-    public OrderLog selectLastTime(int type) {
-        return machineMapper.selectLastTime(type);
+    public OrderLog selectLastTime(String busno, int type) {
+        return machineMapper.selectLastTime(busno, type);
     }
 
     @Override
-    public int insertLastTime(Date timestamp, int type) {
+    public int insertLastTime(String busno, Date timestamp, int type) {
         int commit;
-        OrderLog orderLog = machineMapper.selectLastTime(type);
+        OrderLog orderLog = machineMapper.selectLastTime(busno, type);
         if(orderLog == null){
-            orderLog = new OrderLog(timestamp, timestamp, type);
+            orderLog = new OrderLog(timestamp, timestamp, busno, type);
             commit = machineMapper.insertLastTime(orderLog);
         }else{
             orderLog.setuTime(timestamp);
@@ -52,18 +52,18 @@ public class APIMachineServiceImpl implements APIMachineService {
     }
 
     @Override
-    public List<MachineOrder> selectApplyOrderByTime(Date timestamp) {
-        return machineMapper.selectApplyOrderByTime(timestamp);
+    public List<MachineOrder> selectApplyOrderByTime(String busno, Date timestamp) {
+        return machineMapper.selectApplyOrderByTime(busno, timestamp);
     }
 
     @Override
-    public List<MachineOrder> selectReturnOrderByTime(Date timestamp) {
-        return machineMapper.selectReturnOrderByTime(timestamp);
+    public List<MachineOrder> selectReturnOrderByTime(String busno, Date timestamp) {
+        return machineMapper.selectReturnOrderByTime(busno, timestamp);
     }
 
     @Override
-    public List<MachineSellOrder> selectSellOrderByTime(Date timestamp) {
-        return machineMapper.selectSellOrderByTime(timestamp);
+    public List<MachineSellOrder> selectSellOrderByTime(String busno, Date timestamp) {
+        return machineMapper.selectSellOrderByTime(busno, timestamp);
     }
 
     @Override

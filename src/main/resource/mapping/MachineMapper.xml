@@ -36,6 +36,7 @@
     <resultMap id="LogResultMap" type="com.hydee.ydky.entity.OrderLog">
         <result column="ITIME" property="iTime" jdbcType="TIMESTAMP"></result>
         <result column="UTIME" property="uTime" jdbcType="TIMESTAMP"></result>
+        <result column="BUSNO" property="busno" jdbcType="VARCHAR"></result>
         <result column="TYPE" property="type" jdbcType="DECIMAL"></result>
     </resultMap>
 
@@ -47,19 +48,20 @@
     </sql>
 
     <sql id="Log_Colum_list">
-        ITIME, UTIME, TYPE
+        ITIME, UTIME, BUSNO, TYPE
     </sql>
 
-    <select id="selectLastTime" resultMap="LogResultMap" parameterType="int">
+    <select id="selectLastTime" resultMap="LogResultMap">
         SELECT
         <include refid="Log_Colum_list"/>
         FROM D_DCM_GET_LOG WHERE TYPE = #{type, jdbcType=DECIMAL}
+        AND BUSNO = #{busno, jdbcType=VARCHAR}
     </select>
 
     <insert id="insertLastTime" parameterType="com.hydee.ydky.entity.OrderLog">
         INSERT INTO D_DCM_GET_LOG
         (<include refid="Log_Colum_list"/>)
-        VALUES(#{iTime, jdbcType=TIMESTAMP}, #{uTime, jdbcType=TIMESTAMP}, #{type, jdbcType=DECIMAL})
+        VALUES(#{iTime, jdbcType=TIMESTAMP}, #{uTime, jdbcType=TIMESTAMP}, #{busno, jdbcType=VARCHAR}, #{type, jdbcType=DECIMAL})
     </insert>
 
     <update id="updateLastTime" parameterType="com.hydee.ydky.entity.OrderLog">
@@ -67,6 +69,7 @@
         ITIME = #{iTime, jdbcType=TIMESTAMP},
         UTIME = #{uTime, jdbcType=TIMESTAMP}
         WHERE TYPE = #{type, jdbcType=DECIMAL}
+        AND BUSNO = #{busno, jdbcType=VARCHAR}
     </update>
 
     <insert id="insertApplyOrder" parameterType="com.hydee.ydky.entity.MachineOrder">
@@ -92,9 +95,9 @@
     </insert>
 
     <insert id="insertSellOrder" parameterType="com.hydee.ydky.entity.MachineSellOrder">
-        INSERT INTO D_DCM_SALE_M(BUSNO, DCMNO, BILLNO, CREATETIME, LASTTIME)
+        INSERT INTO D_DCM_SALE_M(BUSNO, DCMNO, BILLNO, STATUS, CREATETIME, LASTTIME)
         VALUES(#{busno, jdbcType=VARCHAR}, #{dcmno, jdbcType=VARCHAR}, #{billno, jdbcType=VARCHAR},
-        #{createTime, jdbcType=TIMESTAMP}, #{lastTime, jdbcType=TIMESTAMP})
+        #{status, jdbcType=DECIMAL}, #{createTime, jdbcType=TIMESTAMP}, #{lastTime, jdbcType=TIMESTAMP})
 
         INSERT INTO D_DCM_SALE_C(BILLNO, ROWID, WAREID, WAREQTY, SALEPRICE)
         <foreach collection="detail" item="item" index="index" separator="union all">
@@ -107,7 +110,7 @@
         <include refid="Base_Colum_list"/>
         FROM D_DCM_APPLY_M M LEFT JOIN D_DCM_APPLY_C C
         ON M.BILLNO = C.BILLNO
-        WHERE M.STATUS = 0
+        WHERE M.STATUS = 0 AND BUSNO = #{busno, jdbcType=VARCHAR}
         <if test="timestamp != null">
             AND M.LASTTIME &gt; #{timestamp, jdbcType=TIMESTAMP}
         </if>
@@ -118,7 +121,7 @@
         <include refid="Base_Colum_list"/>
         FROM D_DCM_RETURN_M M LEFT JOIN D_DCM_RETURN_C C
         ON M.BILLNO = C.BILLNO
-        WHERE M.STATUS = 0
+        WHERE M.STATUS = 0 AND BUSNO = #{busno, jdbcType=VARCHAR}
         <if test="timestamp != null">
             AND M.LASTTIME &gt; #{timestamp, jdbcType=TIMESTAMP}
         </if>
@@ -130,8 +133,9 @@
         <include refid="Sell_Order_Colum_list"/>
         FROM D_DCM_SALE_M M LEFT JOIN D_DCM_SALE_C C
         ON M.BILLNO = C.BILLNO
+        WHERE M.STATUS = 0 AND BUSNO = #{busno, jdbcType=VARCHAR}
         <if test="timestamp != null">
-            WHERE M.LASTTIME &gt; #{timestamp, jdbcType=TIMESTAMP}
+            AND M.LASTTIME &gt; #{timestamp, jdbcType=TIMESTAMP}
         </if>
     </select>
 

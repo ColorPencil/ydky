@@ -15,11 +15,12 @@
         GROUP BY A.BUSNO,A.WAREID
     </select>
 
-    <insert id="specialOutage">
-        INSERT INTO D_DCM_SALE_M (BUSNO, DCMNO, BILLNO)
-        VALUES (#{busno, jdbcType=VARCHAR}, #{dcmno, jdbcType=VARCHAR}, #{billno, jdbcType=VARCHAR})
+    <insert id="specialOutage" parameterType="com.hydee.ydky.entity.MachineSellOrder">
+        INSERT INTO D_DCM_SALE_M(BUSNO, DCMNO, BILLNO, STATUS, CREATETIME, LASTTIME)
+        VALUES(#{busno, jdbcType=VARCHAR}, #{dcmno, jdbcType=VARCHAR}, #{billno, jdbcType=VARCHAR},
+        #{status, jdbcType=DECIMAL}, #{createTime, jdbcType=TIMESTAMP}, #{lastTime, jdbcType=TIMESTAMP})
 
-        INSERT INTO D_DCM_SALE_C (BILLNO, ROWID, WAREID, WAREQTY, SALEPRICE)
+        INSERT INTO D_DCM_SALE_C(BILLNO, ROWID, WAREID, WAREQTY, SALEPRICE)
         <foreach collection="detail" item="item" index="index" separator="union all">
             SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR}, #{item.wareqty, jdbcType=DECIMAL}, #{item.salePrice, jdbcType=DECIMAL}
         </foreach>

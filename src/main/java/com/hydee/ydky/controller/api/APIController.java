@@ -37,7 +37,7 @@ public class APIController {
 	 */
 	@GetMapping("")
 	public String index() {
-		return "redirect:https://www.showdoc.cc/web/#/55575694260298?page_id=313941105476638";
+		return "redirect:https://www.showdoc.cc/ydky";
 	}
 	
 	/**
@@ -50,7 +50,7 @@ public class APIController {
 		ResponseObject<String> responseObject = new ResponseObject<String>();
 		responseObject.setCode(Results.COM_SUCCESS.getCode());
 		responseObject.setMsg("接口文档地址");
-		responseObject.setData("https://www.showdoc.cc/web/#/55575694260298?page_id=313941105476638");
+		responseObject.setData("https://www.showdoc.cc/ydky");
 		return responseObject;
 	}
 	

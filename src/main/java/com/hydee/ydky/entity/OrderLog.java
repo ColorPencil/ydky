@@ -9,14 +9,16 @@ public class OrderLog {
 
     private Date iTime;
     private Date uTime;
+    private String busno;
     private int type;
 
     public OrderLog() {
     }
 
-    public OrderLog(Date iTime, Date uTime, int type) {
+    public OrderLog(Date iTime, Date uTime, String busno, int type) {
         this.iTime = iTime;
         this.uTime = uTime;
+        this.busno = busno;
         this.type = type;
     }
 
@@ -34,6 +36,14 @@ public class OrderLog {
 
     public void setuTime(Date uTime) {
         this.uTime = uTime;
+    }
+
+    public String getBusno() {
+        return busno;
+    }
+
+    public void setBusno(String busno) {
+        this.busno = busno;
     }
 
     public int getType() {

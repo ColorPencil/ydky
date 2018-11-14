@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface APIMachineService {
 
-    OrderLog selectLastTime(int type);
+    OrderLog selectLastTime(String busno, int type);
 
-    int insertLastTime(Date timestamp, int type);
+    int insertLastTime(String busno, Date timestamp, int type);
 
     int apply(MachineOrder order);
 
@@ -19,11 +19,11 @@ public interface APIMachineService {
 
     int sell(MachineSellOrder order);
 
-    List<MachineOrder> selectApplyOrderByTime(Date timestamp);
+    List<MachineOrder> selectApplyOrderByTime(String busno, Date timestamp);
             ;
-    List<MachineOrder> selectReturnOrderByTime(Date timestamp);
+    List<MachineOrder> selectReturnOrderByTime(String busno, Date timestamp);
 
-    List<MachineSellOrder> selectSellOrderByTime(Date timestamp);
+    List<MachineSellOrder> selectSellOrderByTime(String busno, Date timestamp);
 
     int updateApplyOrder(List<MachineOrder> orders);
 

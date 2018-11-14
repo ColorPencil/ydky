@@ -12,5 +12,5 @@ public interface StockMapper {
 
         public List<Stock> selectStock();
 
-        public void specialOutage(MachineSellOrder order);
+        public int specialOutage(MachineSellOrder order);
 }

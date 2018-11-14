@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public interface MachineMapper {
 
-    OrderLog selectLastTime(int type);
+    OrderLog selectLastTime(@Param("busno") String busno, @Param("type") int type);
 
     int insertLastTime(OrderLog orderLog);
 
@@ -24,11 +24,11 @@ public interface MachineMapper {
 
     int insertSellOrder(MachineSellOrder order);
 
-    List<MachineOrder> selectApplyOrderByTime(@Param("timestamp") Date timestamp);
+    List<MachineOrder> selectApplyOrderByTime(@Param("busno") String busno, @Param("timestamp") Date timestamp);
 
-    List<MachineOrder> selectReturnOrderByTime(@Param("timestamp") Date timestamp);
+    List<MachineOrder> selectReturnOrderByTime(@Param("busno") String busno, @Param("timestamp") Date timestamp);
 
-    List<MachineSellOrder> selectSellOrderByTime(@Param("timestamp") Date timestamp);
+    List<MachineSellOrder> selectSellOrderByTime(@Param("busno") String busno, @Param("timestamp") Date timestamp);
 
     int updateApplyOrder(List<MachineOrder> orders);
 

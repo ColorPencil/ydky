@@ -52,6 +52,14 @@ spring:
     logSlowSql: true
     # 开启Druid keepAlive 功能,防止数据库连接被防火墙主动关闭
     keepAlive: true
+    #核心池大小
+    corePoolSize: 5
+    #最大池大小
+    maxPoolSize: 10
+    #QueueCapacity容量
+    queueCapacity: 25
+    #分次请求单次最大数量配置
+    commitCount: 10000
   jpa:
     database: sqlserver
 
@@ -70,12 +78,3 @@ server:
     sign:
       expired: 300
       enabled: false
-
-spring:
-  datasource:
-    #核心池大小
-    corePoolSize: 5
-    #最大池大小
-    maxPoolSize: 10
-    #QueueCapacity容量
-    queueCapacity: 25

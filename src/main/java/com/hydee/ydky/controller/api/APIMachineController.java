@@ -97,20 +97,23 @@ public class APIMachineController {
      * @return
      */
     @RequestMapping("/selectNewOrder")
-    public Object selectOrderByTime(int type){
+    public Object selectOrderByTime(String busno, int type){
+        if(busno == null || busno.isEmpty()) {
+            return ResponseObject.Create(Results.COM_REQUEST_PARAMS_NOT_FULL).setMsg(String.format(Results.COM_REQUEST_PARAMS_NOT_FULL.getMsg(), "busno"));
+        }
         try {
-            OrderLog orderLog = apiMachineService.selectLastTime(type);
+            OrderLog orderLog = apiMachineService.selectLastTime(busno, type);
             Date timestamp = null;
             if(orderLog != null){
                 timestamp = orderLog.getuTime();
             }
             List list;
             if(type == Enums.ORDER_LOG_TYPE_APPLY.getCode()){
-                list = apiMachineService.selectApplyOrderByTime(timestamp);
+                list = apiMachineService.selectApplyOrderByTime(busno, timestamp);
             }else if(type == Enums.ORDER_LOG_TYPE_RETURN.getCode()){
-                list = apiMachineService.selectReturnOrderByTime(timestamp);
+                list = apiMachineService.selectReturnOrderByTime(busno, timestamp);
             }else if(type == Enums.ORDER_LOG_TYPE_SELL.getCode()){
-                list = apiMachineService.selectSellOrderByTime(timestamp);
+                list = apiMachineService.selectSellOrderByTime(busno, timestamp);
             }else{
                 return ResponseObject.Create(Results.MACHINE_DCM_TYPE_NOT_fOUND);
             }
@@ -132,9 +135,9 @@ public class APIMachineController {
      * @return
      */
     @PostMapping("/selectOrderByTimeCallback")
-    public Object selectOrderByTimeCallback(Long timestamp, int type){
+    public Object selectOrderByTimeCallback(String busno, Long timestamp, int type){
         if(timestamp == null) return ResponseObject.Create(Results.MISSING_REQUEST_PARAMS);
-        int commit = apiMachineService.insertLastTime(new Date(timestamp), type);
+        int commit = apiMachineService.insertLastTime(busno, new Date(timestamp), type);
         if(commit > 0){
             return ResponseObject.Success();
         }else{
