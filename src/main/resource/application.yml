@@ -70,3 +70,12 @@ server:
     sign:
       expired: 300
       enabled: false
+      
+---
+# 配置分页插件pagehelper
+pagehelper:
+  helper-dialect: oracle
+  auto-dialect: true
+  reasonable: true
+  params: count=countSql
+  support-methods-arguments: true
