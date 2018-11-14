@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hydee.ydky.dao.MachineMapper">
+
+    <resultMap id="BaseResultMap" type="com.hydee.ydky.entity.MachineOrder">
+        <result column="BUSNO" property="busno" jdbcType="VARCHAR"></result>
+        <result column="DCMNO" property="dcmno" jdbcType="VARCHAR"></result>
+        <result column="BILLNO" property="billno" jdbcType="VARCHAR"></result>
+        <result column="STATUS" property="status" jdbcType="DECIMAL"></result>
+        <result column="CREATETIME" property="createTime" jdbcType="TIMESTAMP"></result>
+        <result column="LASTTIME" property="lastTime" jdbcType="TIMESTAMP"></result>
+        <collection property="detail" ofType="com.hydee.ydky.entity.MachineOrderDetail">
+            <result column="BILLNO" property="billno" jdbcType="VARCHAR"></result>
+            <result column="ROWID" property="rowid" jdbcType="VARCHAR"></result>
+            <result column="WAREID" property="wareid" jdbcType="VARCHAR"></result>
+            <result column="WAREQTY" property="wareqty" jdbcType="DECIMAL"></result>
+            <result column="PURPRICE" property="purprice" jdbcType="DECIMAL"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="MachineSellOrderResultMap" type="com.hydee.ydky.entity.MachineSellOrder">
+        <result column="BUSNO" property="busno" jdbcType="VARCHAR"></result>
+        <result column="DCMNO" property="dcmno" jdbcType="VARCHAR"></result>
+        <result column="BILLNO" property="billno" jdbcType="VARCHAR"></result>
+        <result column="CREATETIME" property="createTime" jdbcType="TIMESTAMP"></result>
+        <result column="LASTTIME" property="lastTime" jdbcType="TIMESTAMP"></result>
+        <collection property="detail" ofType="com.hydee.ydky.entity.MachineSellOrderDetail">
+            <result column="BILLNO" property="billno" jdbcType="VARCHAR"></result>
+            <result column="ROWID" property="rowid" jdbcType="VARCHAR"></result>
+            <result column="WAREID" property="wareid" jdbcType="VARCHAR"></result>
+            <result column="WAREQTY" property="wareqty" jdbcType="DECIMAL"></result>
+            <result column="SALEPRICE" property="salePrice" jdbcType="DECIMAL"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="LogResultMap" type="com.hydee.ydky.entity.OrderLog">
+        <result column="ITIME" property="iTime" jdbcType="TIMESTAMP"></result>
+        <result column="UTIME" property="uTime" jdbcType="TIMESTAMP"></result>
+        <result column="BUSNO" property="busno" jdbcType="VARCHAR"></result>
+        <result column="TYPE" property="type" jdbcType="DECIMAL"></result>
+    </resultMap>
+
+    <sql id="Base_Colum_list">
+        M.BUSNO, M.DCMNO, M.BILLNO, M.STATUS, M.CREATETIME, M.LASTTIME, C.ROWID, C.WAREID, C.WAREQTY, C.PURPRICE
+    </sql>
+    <sql id="Sell_Order_Colum_list">
+        M.BUSNO, M.DCMNO, M.BILLNO, M.CREATETIME, M.LASTTIME, C.ROWID, C.WAREID, C.WAREQTY, C.SALEPRICE
+    </sql>
+
+    <sql id="Log_Colum_list">
+        ITIME, UTIME, BUSNO, TYPE
+    </sql>
+
+    <select id="selectLastTime" resultMap="LogResultMap">
+        SELECT
+        <include refid="Log_Colum_list"/>
+        FROM D_DCM_GET_LOG WHERE TYPE = #{type, jdbcType=DECIMAL}
+        AND BUSNO = #{busno, jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insertLastTime" parameterType="com.hydee.ydky.entity.OrderLog">
+        INSERT INTO D_DCM_GET_LOG
+        (<include refid="Log_Colum_list"/>)
+        VALUES(#{iTime, jdbcType=TIMESTAMP}, #{uTime, jdbcType=TIMESTAMP}, #{busno, jdbcType=VARCHAR}, #{type, jdbcType=DECIMAL})
+    </insert>
+
+    <update id="updateLastTime" parameterType="com.hydee.ydky.entity.OrderLog">
+        UPDATE D_DCM_GET_LOG SET
+        ITIME = #{iTime, jdbcType=TIMESTAMP},
+        UTIME = #{uTime, jdbcType=TIMESTAMP}
+        WHERE TYPE = #{type, jdbcType=DECIMAL}
+        AND BUSNO = #{busno, jdbcType=VARCHAR}
+    </update>
+
+    <insert id="insertApplyOrder" parameterType="com.hydee.ydky.entity.MachineOrder">
+        INSERT INTO D_DCM_APPLY_M(BUSNO, DCMNO, BILLNO, STATUS, CREATETIME, LASTTIME)
+        VALUES(#{busno, jdbcType=VARCHAR}, #{dcmno, jdbcType=VARCHAR}, #{billno, jdbcType=VARCHAR},
+        #{status, jdbcType=DECIMAL}, #{createTime, jdbcType=TIMESTAMP}, #{lastTime, jdbcType=TIMESTAMP})
+
+        INSERT INTO D_DCM_APPLY_C (BILLNO, ROWID, WAREID, WAREQTY, PURPRICE)
+        <foreach collection="detail" item="item" index="index" separator="union all">
+            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR}, #{item.wareqty, jdbcType=VARCHAR}, #{item.purprice, jdbcType=VARCHAR}
+        </foreach>
+    </insert>
+
+    <insert id="insertReturnOrder" parameterType="com.hydee.ydky.entity.MachineOrder">
+        INSERT INTO D_DCM_RETURN_M(BUSNO, DCMNO, BILLNO, STATUS, CREATETIME, LASTTIME)
+        VALUES(#{busno, jdbcType=VARCHAR}, #{dcmno, jdbcType=VARCHAR}, #{billno, jdbcType=VARCHAR},
+        #{status, jdbcType=DECIMAL}, #{createTime, jdbcType=TIMESTAMP}, #{lastTime, jdbcType=TIMESTAMP})
+
+        INSERT INTO D_DCM_RETURN_C(BILLNO, ROWID, WAREID, WAREQTY, PURPRICE)
+        <foreach collection="detail" item="item" index="index" separator="union all">
+            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR}, #{item.wareqty, jdbcType=DECIMAL}, #{item.purprice, jdbcType=DECIMAL}
+        </foreach>
+    </insert>
+
+    <insert id="insertSellOrder" parameterType="com.hydee.ydky.entity.MachineSellOrder">
+        INSERT INTO D_DCM_SALE_M(BUSNO, DCMNO, BILLNO, STATUS, CREATETIME, LASTTIME)
+        VALUES(#{busno, jdbcType=VARCHAR}, #{dcmno, jdbcType=VARCHAR}, #{billno, jdbcType=VARCHAR},
+        #{status, jdbcType=DECIMAL}, #{createTime, jdbcType=TIMESTAMP}, #{lastTime, jdbcType=TIMESTAMP})
+
+        INSERT INTO D_DCM_SALE_C(BILLNO, ROWID, WAREID, WAREQTY, SALEPRICE)
+        <foreach collection="detail" item="item" index="index" separator="union all">
+            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR}, #{item.wareqty, jdbcType=DECIMAL}, #{item.salePrice, jdbcType=DECIMAL}
+        </foreach>
+    </insert>
+
+    <select id="selectApplyOrderByTime" resultMap="BaseResultMap" parameterType="java.util.Date">
+        SELECT
+        <include refid="Base_Colum_list"/>
+        FROM D_DCM_APPLY_M M LEFT JOIN D_DCM_APPLY_C C
+        ON M.BILLNO = C.BILLNO
+        WHERE M.STATUS = 0 AND BUSNO = #{busno, jdbcType=VARCHAR}
+        <if test="timestamp != null">
+            AND M.LASTTIME &gt; #{timestamp, jdbcType=TIMESTAMP}
+        </if>
+    </select>
+
+    <select id="selectReturnOrderByTime" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Colum_list"/>
+        FROM D_DCM_RETURN_M M LEFT JOIN D_DCM_RETURN_C C
+        ON M.BILLNO = C.BILLNO
+        WHERE M.STATUS = 0 AND BUSNO = #{busno, jdbcType=VARCHAR}
+        <if test="timestamp != null">
+            AND M.LASTTIME &gt; #{timestamp, jdbcType=TIMESTAMP}
+        </if>
+    </select>
+
+
+    <select id="selectSellOrderByTime" resultMap="MachineSellOrderResultMap">
+        SELECT
+        <include refid="Sell_Order_Colum_list"/>
+        FROM D_DCM_SALE_M M LEFT JOIN D_DCM_SALE_C C
+        ON M.BILLNO = C.BILLNO
+        WHERE M.STATUS = 0 AND BUSNO = #{busno, jdbcType=VARCHAR}
+        <if test="timestamp != null">
+            AND M.LASTTIME &gt; #{timestamp, jdbcType=TIMESTAMP}
+        </if>
+    </select>
+
+    <update id="updateApplyOrder" parameterType="java.util.List">
+        BEGIN
+        <foreach collection="list" item="item" index="index">
+            UPDATE D_DCM_APPLY_M SET
+            BUSNO = #{item.busno, jdbcType=VARCHAR},
+            DCMNO = #{item.dcmno, jdbcType=VARCHAR},
+            STATUS = #{item.status, jdbcType=VARCHAR},
+            CREATETIME = #{item.createTime, jdbcType=VARCHAR},
+            LASTTIME = #{item.lastTime, jdbcType=VARCHAR}
+            WHERE BILLNO = #{item.billno, jdbcType=VARCHAR};
+
+            <foreach collection="item.detail" item="detailItem" index="index">
+                UPDATE D_DCM_APPLY_C SET
+                WAREID = #{detailItem.wareid, jdbcType=VARCHAR},
+                WAREQTY = #{detailItem.wareqty, jdbcType=VARCHAR},
+                PURPRICE = #{detailItem.purprice, jdbcType=VARCHAR}
+                WHERE BILLNO = #{detailItem.billno, jdbcType=VARCHAR}
+                AND ROWID = #{detailItem.rowid, jdbcType=VARCHAR};
+            </foreach>
+        </foreach>
+        END
+    </update>
+
+    <update id="updateReturnOrder" parameterType="java.util.List">
+        BEGIN
+        <foreach collection="list" item="item" index="index">
+            UPDATE D_DCM_RETURN_M SET
+            BUSNO = #{item.busno, jdbcType=VARCHAR},
+            DCMNO = #{item.dcmno, jdbcType=VARCHAR},
+            STATUS = #{item.status, jdbcType=VARCHAR},
+            CREATETIME = #{item.createTime, jdbcType=VARCHAR},
+            LASTTIME = #{item.lastTime, jdbcType=VARCHAR}
+            WHERE BILLNO = #{item.billno, jdbcType=VARCHAR};
+
+            <foreach collection="item.detail" item="detailItem" index="index">
+                UPDATE D_DCM_RETURN_C SET
+                WAREID = #{detailItem.wareid, jdbcType=VARCHAR},
+                WAREQTY = #{detailItem.wareqty, jdbcType=VARCHAR},
+                PURPRICE = #{detailItem.purprice, jdbcType=VARCHAR}
+                WHERE BILLNO = #{detailItem.billno, jdbcType=VARCHAR}
+                AND ROWID = #{detailItem.rowid, jdbcType=VARCHAR};
+            </foreach>
+        </foreach>
+        END
+    </update>
+</mapper>
