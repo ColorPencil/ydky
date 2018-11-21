@@ -3,15 +3,17 @@
 <mapper namespace="com.hydee.ydky.dao.StockMapper">
 
     <resultMap id="BaseResultMap" type="com.hydee.ydky.entity.Stock">
-        <result column="BUSNO" property="busno" jdbcType="VARCHAR"></result>
-        <result column="WAREID" property="wareid" jdbcType="VARCHAR"></result>
-        <result column="WAREQTY" property="wareqty" jdbcType="DECIMAL"></result>
+        <result column="BUSNO" property="busNo" jdbcType="VARCHAR"></result>
+        <result column="WAREID" property="wareId" jdbcType="VARCHAR"></result>
+        <result column="WAREQTY" property="wareQty" jdbcType="DECIMAL"></result>
+        <result column="SORT" property="sort" jdbcType="DECIMAL"></result>
     </resultMap>
 
     <select id="selectStock" resultMap="BaseResultMap" resultType="java.util.List">
-        SELECT   A.busno,A.wareid,SUM(A.wareqty - A.awaitqty) AS SUMQTY
-        FROM dbo.u_store_C A ,dbo.c_zone B ,dbo.c_stall C
-        WHERE A.busno = B.busno AND C.zoneno = B.zoneno AND C.stalltype ='11'
+        SELECT   CASE WHEN a.busno &lt;&gt; '501' THEN  1 ELSE 2 END  AS sort,A.busno,A.wareid,SUM(A.wareqty - A.awaitqty) AS WAREQTY
+        FROM dbo.u_store_C A ,dbo.c_zone B ,dbo.c_stall C ,dbo.c_org_busi D
+        WHERE A.busno = B.busno AND C.zoneno = B.zoneno AND C.stalltype ='11' AND  A.busno = D.busno
+        AND (A.BUSNO = '501' OR D.orgtype = '20' OR D.orgtype = '20'  )
         GROUP BY A.BUSNO,A.WAREID
     </select>
 

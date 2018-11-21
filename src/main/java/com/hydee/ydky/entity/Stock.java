@@ -2,31 +2,40 @@ package com.hydee.ydky.entity;
 
 public class Stock {
 
-    private String busno;//门店编码
-    private String wareid;//商品编码
-    private double wareqty;//商品数量
+    private String busNo;//门店编码
+    private String wareId;//商品编码
+    private double wareQty;//商品数量
+    private int sort;//类型
 
-    public String getBusno() {
-        return busno;
+    public String getBusNo() {
+        return busNo;
     }
 
-    public void setBusno(String busno) {
-        this.busno = busno;
+    public void setBusNo(String busNo) {
+        this.busNo = busNo;
     }
 
-    public String getWareid() {
-        return wareid;
+    public String getWareId() {
+        return wareId;
     }
 
-    public void setWareid(String wareid) {
-        this.wareid = wareid;
+    public void setWareId(String wareId) {
+        this.wareId = wareId;
     }
 
-    public double getWareqty() {
-        return wareqty;
+    public double getWareQty() {
+        return wareQty;
     }
 
-    public void setWareqty(double wareqty) {
-        this.wareqty = wareqty;
+    public void setWareQty(double wareQty) {
+        this.wareQty = wareQty;
+    }
+
+    public int getSort() {
+        return sort;
+    }
+
+    public void setSort(int sort) {
+        this.sort = sort;
     }
 }

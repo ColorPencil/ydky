@@ -14,9 +14,9 @@ public class Scheduler {
     @Autowired
     APIStockService apiStockService;
 
-    @Scheduled(cron = "0 0/30 * * * ?")
+    /*@Scheduled(cron = "0 0/5 * * * ?")
     public void updateStock(){
         logger.info("库存更改抓取...");
         apiStockService.stockUpdate();
-    }
+    }*/
 }
