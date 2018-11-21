@@ -60,6 +60,10 @@ spring:
     queueCapacity: 25
     #分次请求单次最大数量配置
     commitCount: 10000
+    #2.1新增门店-易点快药提供
+    newStoreUrl: http://zhengyuan.nbxlmy.com/store/erpAdd.do
+    #2.2新增门店-2.2新增售药机
+    newMachineUrl: http://zhengyuan.nbxlmy.com/slotMachine/erpAdd.do
   jpa:
     database: sqlserver
 

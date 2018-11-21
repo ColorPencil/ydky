@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hydee.ydky.dao.EnterMapper">
+
+    <resultMap id="GoodsMap" type="com.hydee.ydky.entity.EnterGood">
+        <result column="WAREID" property="wareid" jdbcType="VARCHAR"></result>
+        <result column="WARENAME" property="warename" jdbcType="VARCHAR"></result>
+        <result column="WARESPEC" property="warespec" jdbcType="VARCHAR"></result>
+        <result column="WAREUNIT" property="wareunit" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <sql id="Column_goods_list">
+        WAREID,WARENAME,WARESPEC,WAREUNIT
+    </sql>
+
+    <insert id="insertStore">
+        INSERT INTO C_ORG_BUSI (BUSNO, ORGNAME, STATUS, ADDRESS, LON, LAT, STORENUM ,STOREPASSWORD)
+        VALUES (#{buson, jdbcType=VARCHAR}, #{orgname, jdbcType=VARCHAR}, #{status, jdbcType=NUMERIC}, #{address, jdbcType=VARCHAR}, #{lon, jdbcType=NUMERIC}, #{lat, jdbcType=NUMERIC}, #{storeNum, jdbcType=VARCHAR}, #{storePassword, jdbcType=VARCHAR})
+    </insert>
+
+
+    <insert id="insertMachine">
+        INSERT INTO C_ORG_BUSI (BUSNO, DCMNO, STATUS, ADDRESS, LON, LAT, LOCALCOUNT ,INTRODUCE)
+        VALUES (#{buson, jdbcType=VARCHAR}, #{orgname, jdbcType=VARCHAR}, #{status, jdbcType=NUMERIC}, #{address, jdbcType=VARCHAR}, #{lon, jdbcType=NUMERIC}, #{lat, jdbcType=NUMERIC}, #{storeNum, jdbcType=VARCHAR}, #{storePassword, jdbcType=VARCHAR})
+    </insert>
+
+    <select id="selectGoods" resultMap="GoodsMap">
+        SELECT <include refid="Column_goods_list" />
+        FROM U_WARE_Q
+    </select>
+
+</mapper>

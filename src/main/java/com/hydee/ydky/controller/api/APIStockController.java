@@ -2,7 +2,6 @@ package com.hydee.ydky.controller.api;
 
 import com.hydee.ydky.constants.ResponseObject;
 import com.hydee.ydky.constants.Results;
-import com.hydee.ydky.entity.MachineOrder;
 import com.hydee.ydky.entity.MachineSellOrder;
 import com.hydee.ydky.service.APIStockService;
 import org.springframework.beans.factory.annotation.Autowired;
