@@ -55,7 +55,6 @@ public class APIStockServiceImpl implements APIStockService {
             list.subList(0, pageSize).clear();
             logger.info("数据拉取中，pageNum:"+i+" stocksSzie:"+stocks.size()+" 剩余:"+list.size());
             Map<String, String> head = new HashMap<>();
-//            head.put("X-Requested-With", "XMLHttpRequest");
             head.put("Content-Type", "application/json;charset=utf-8");
             logger.info("数据推送中");
             String result = HttpUtils.post(stockUpdateUrl, JSON.toJSONString(stocks), head);

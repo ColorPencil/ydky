@@ -83,7 +83,8 @@ server:
   api:
     sign:
       expired: 300
-      enabled: false
+      enabled: true
+      signKey: nsiaF62VCLdce1ST
       
 ---
 # 配置分页插件pagehelper
