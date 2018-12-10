@@ -39,6 +39,11 @@ public class APIStockServiceImpl implements APIStockService {
     @Override
     public void stockUpdate() {
         logger.info("数据拉取开始...");
+        int num = stockMapper.autoGenerateStore();
+        if(num <= 0){
+            logger.info("没有更新数据");
+            return;
+        }
         List<Stock> list = stockMapper.selectStock();
         int size = list.size();
         int pageCount = size % commitCount == 0 ? size / commitCount : size / commitCount + 1;

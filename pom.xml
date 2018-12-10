@@ -6,7 +6,7 @@
     <groupId>com.hydee</groupId>
     <artifactId>ydky</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>ydky</name>
     <description>易点快药售药机接口平台</description>
@@ -39,10 +39,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
         </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -147,8 +154,13 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+            <version>7.0.42</version>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
-    
     <repositories>
         <repository>
             <id>Sonatype</id>
@@ -163,13 +175,23 @@
             </snapshots>
         </repository>
     </repositories>
-    
-	<build>
+
+    <build>
+        <finalName>ydky</finalName>
+        <plugins>
+            <!-- Package as an executable jar/war -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+	<!--<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-                <!-- lib分离 -->
+                &lt;!&ndash; lib分离 &ndash;&gt;
                 <configuration>
                     <layout>ZIP</layout>
                     <excludeGroupIds>
@@ -192,7 +214,7 @@
                     </execution>
                 </executions>
 			</plugin>
-            <!-- myBatis auto generate -->
+            &lt;!&ndash; myBatis auto generate &ndash;&gt;
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -203,5 +225,5 @@
                 </configuration>
             </plugin>
 		</plugins>
-	</build>
+	</build>-->
 </project>

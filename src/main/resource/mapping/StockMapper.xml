@@ -9,12 +9,23 @@
         <result column="SORT" property="sort" jdbcType="DECIMAL"></result>
     </resultMap>
 
+    <sql id="Base_Cloum_List">
+        busNo, wareId, wareQty, sort
+    </sql>
+    
+    <update id="autoGenerateStore">
+        EXEC P_AUTO_DCM_STORE
+    </update>
+
     <select id="selectStock" resultMap="BaseResultMap" resultType="java.util.List">
-        SELECT   CASE WHEN a.busno &lt;&gt; '501' THEN  1 ELSE 2 END  AS sort,A.busno,A.wareid,SUM(A.wareqty - A.awaitqty) AS WAREQTY
+        /*SELECT   CASE WHEN a.busno &lt;&gt; '501' THEN  1 ELSE 2 END  AS sort,A.busno,A.wareid,SUM(A.wareqty - A.awaitqty) AS WAREQTY
         FROM dbo.u_store_C A ,dbo.c_zone B ,dbo.c_stall C ,dbo.c_org_busi D
         WHERE A.busno = B.busno AND C.zoneno = B.zoneno AND C.stalltype ='11' AND  A.busno = D.busno
         AND (A.BUSNO = '501' OR D.orgtype = '20' OR D.orgtype = '20'  )
-        GROUP BY A.BUSNO,A.WAREID
+        GROUP BY A.BUSNO,A.WAREID*/
+        SELECT
+        <include refid="Base_Cloum_List"/>
+        FROM D_DCM_STORE
     </select>
 
     <insert id="specialOutage" parameterType="com.hydee.ydky.entity.MachineSellOrder">

@@ -10,6 +10,8 @@ import java.util.List;
 @Component
 public interface StockMapper {
 
+        public int autoGenerateStore();
+
         public List<Stock> selectStock();
 
         public int specialOutage(MachineSellOrder order);

@@ -2,6 +2,12 @@
 # 项目启动端口
 server:
   port: 8080
+#  servlet:
+#    context-path: /ydky
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
 
 ---
 # 静态文件请求匹配方式
