@@ -2,6 +2,8 @@
 # 项目启动端口
 server:
   port: 8080
+#  servlet:
+#    context-path: /ydky
 
 ---
 # 静态文件请求匹配方式
@@ -52,6 +54,20 @@ spring:
     logSlowSql: true
     # 开启Druid keepAlive 功能,防止数据库连接被防火墙主动关闭
     keepAlive: true
+    #核心池大小
+    corePoolSize: 5
+    #最大池大小
+    maxPoolSize: 10
+    #QueueCapacity容量
+    queueCapacity: 25
+    #分次请求单次最大数量配置
+    commitCount: 5000
+    #2.8库存更改接口
+    stockUpdateUrl: http://zhengyuan.nbxlmy.com/repertory/update.do
+    #2.1新增门店-易点快药提供
+    newStoreUrl: http://zhengyuan.nbxlmy.com/store/erpAdd.do
+    #2.2新增门店-2.2新增售药机
+    newMachineUrl: http://zhengyuan.nbxlmy.com/slotMachine/erpAdd.do
   jpa:
     database: sqlserver
 
@@ -69,4 +85,14 @@ server:
   api:
     sign:
       expired: 300
-      enabled: false
+      enabled: true
+      signKey: kthZLYDE8dmUsUUvmtSPpWXeCEcaP9hG
+      
+---
+# 配置分页插件pagehelper
+pagehelper:
+  helper-dialect: sqlserver
+  auto-dialect: true
+  reasonable: true
+  params: count=countSql
+  support-methods-arguments: true
