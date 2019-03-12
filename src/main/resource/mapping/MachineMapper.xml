@@ -15,6 +15,8 @@
             <result column="WAREID" property="wareid" jdbcType="VARCHAR"></result>
             <result column="WAREQTY" property="wareqty" jdbcType="DECIMAL"></result>
             <result column="PURPRICE" property="purprice" jdbcType="DECIMAL"></result>
+            <result column="TYPE" property="type" jdbcType="VARCHAR"></result>
+            <result column="MAKENO" property="makeno" jdbcType="VARCHAR"></result>
         </collection>
     </resultMap>
 
@@ -30,6 +32,7 @@
             <result column="WAREID" property="wareid" jdbcType="VARCHAR"></result>
             <result column="WAREQTY" property="wareqty" jdbcType="DECIMAL"></result>
             <result column="SALEPRICE" property="salePrice" jdbcType="DECIMAL"></result>
+            <result column="MAKENO" property="makeno" jdbcType="VARCHAR"></result>
         </collection>
     </resultMap>
 
@@ -41,10 +44,10 @@
     </resultMap>
 
     <sql id="Base_Colum_list">
-        M.BUSNO, M.DCMNO, M.BILLNO, M.STATUS, M.CREATETIME, M.LASTTIME, C.ROWID, C.WAREID, C.WAREQTY, C.PURPRICE
+        M.BUSNO, M.DCMNO, M.BILLNO, M.STATUS, M.CREATETIME, M.LASTTIME, C.ROWID, C.WAREID, C.WAREQTY, C.PURPRICE, C.TYPE, C.MAKENO
     </sql>
     <sql id="Sell_Order_Colum_list">
-        M.BUSNO, M.DCMNO, M.BILLNO, M.CREATETIME, M.LASTTIME, C.ROWID, C.WAREID, C.WAREQTY, C.SALEPRICE
+        M.BUSNO, M.DCMNO, M.BILLNO, M.CREATETIME, M.LASTTIME, C.ROWID, C.WAREID, C.WAREQTY, C.SALEPRICE, C.MAKENO
     </sql>
 
     <sql id="Log_Colum_list">
@@ -77,9 +80,11 @@
         VALUES(#{busno, jdbcType=VARCHAR}, #{dcmno, jdbcType=VARCHAR}, #{billno, jdbcType=VARCHAR},
         #{status, jdbcType=DECIMAL}, #{createTime, jdbcType=TIMESTAMP}, #{lastTime, jdbcType=TIMESTAMP})
 
-        INSERT INTO D_DCM_APPLY_C (BILLNO, ROWID, WAREID, WAREQTY, PURPRICE)
+        INSERT INTO D_DCM_APPLY_C (BILLNO, ROWID, WAREID, WAREQTY, PURPRICE, TYPE, MAKENO)
         <foreach collection="detail" item="item" index="index" separator="union all">
-            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR}, #{item.wareqty, jdbcType=VARCHAR}, #{item.purprice, jdbcType=VARCHAR}
+            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR},
+            #{item.wareqty, jdbcType=VARCHAR}, #{item.purprice, jdbcType=VARCHAR}, #{item.type, jdbcType=VARCHAR},
+            #{item.makeno, jdbcType=VARCHAR}
         </foreach>
     </insert>
 
@@ -88,9 +93,10 @@
         VALUES(#{busno, jdbcType=VARCHAR}, #{dcmno, jdbcType=VARCHAR}, #{billno, jdbcType=VARCHAR},
         #{status, jdbcType=DECIMAL}, #{createTime, jdbcType=TIMESTAMP}, #{lastTime, jdbcType=TIMESTAMP})
 
-        INSERT INTO D_DCM_RETURN_C(BILLNO, ROWID, WAREID, WAREQTY, PURPRICE)
+        INSERT INTO D_DCM_RETURN_C(BILLNO, ROWID, WAREID, WAREQTY, PURPRICE, MAKENO)
         <foreach collection="detail" item="item" index="index" separator="union all">
-            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR}, #{item.wareqty, jdbcType=DECIMAL}, #{item.purprice, jdbcType=DECIMAL}
+            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR},
+            #{item.wareqty, jdbcType=DECIMAL}, #{item.purprice, jdbcType=DECIMAL}, #{item.makeno, jdbcType=VARCHAR}
         </foreach>
     </insert>
 
@@ -99,12 +105,14 @@
         VALUES(#{busno, jdbcType=VARCHAR}, #{dcmno, jdbcType=VARCHAR}, #{billno, jdbcType=VARCHAR},
         #{status, jdbcType=DECIMAL}, #{createTime, jdbcType=TIMESTAMP}, #{lastTime, jdbcType=TIMESTAMP})
 
-        INSERT INTO D_DCM_SALE_C(BILLNO, ROWID, WAREID, WAREQTY, SALEPRICE)
+        INSERT INTO D_DCM_SALE_C(BILLNO, ROWID, WAREID, WAREQTY, SALEPRICE, MAKENO)
         <foreach collection="detail" item="item" index="index" separator="union all">
-            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR}, #{item.wareqty, jdbcType=DECIMAL}, #{item.salePrice, jdbcType=DECIMAL}
+            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR},
+            #{item.wareqty, jdbcType=DECIMAL}, #{item.salePrice, jdbcType=DECIMAL}, #{item.makeno, jdbcType=VARCHAR}
         </foreach>
     </insert>
 
+    <!--  AND C.TYPE = #{type, jdbcType=VARCHAR} -->
     <select id="selectApplyOrderByTime" resultMap="BaseResultMap" parameterType="java.util.Date">
         SELECT
         <include refid="Base_Colum_list"/>
@@ -154,7 +162,8 @@
                 UPDATE D_DCM_APPLY_C SET
                 WAREID = #{detailItem.wareid, jdbcType=VARCHAR},
                 WAREQTY = #{detailItem.wareqty, jdbcType=VARCHAR},
-                PURPRICE = #{detailItem.purprice, jdbcType=VARCHAR}
+                PURPRICE = #{detailItem.purprice, jdbcType=VARCHAR},
+                MAKENO = #{item.makeno, jdbcType=VARCHAR}
                 WHERE BILLNO = #{detailItem.billno, jdbcType=VARCHAR}
                 AND ROWID = #{detailItem.rowid, jdbcType=VARCHAR};
             </foreach>
@@ -177,7 +186,8 @@
                 UPDATE D_DCM_RETURN_C SET
                 WAREID = #{detailItem.wareid, jdbcType=VARCHAR},
                 WAREQTY = #{detailItem.wareqty, jdbcType=VARCHAR},
-                PURPRICE = #{detailItem.purprice, jdbcType=VARCHAR}
+                PURPRICE = #{detailItem.purprice, jdbcType=VARCHAR},
+                MAKENO = #{item.makeno, jdbcType=VARCHAR}
                 WHERE BILLNO = #{detailItem.billno, jdbcType=VARCHAR}
                 AND ROWID = #{detailItem.rowid, jdbcType=VARCHAR};
             </foreach>

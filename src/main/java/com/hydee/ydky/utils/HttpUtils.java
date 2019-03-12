@@ -101,7 +101,7 @@ public class HttpUtils {
         conn.setUseCaches(false);
 
         conn.setConnectTimeout(20000);
-        conn.setReadTimeout(60000);
+        conn.setReadTimeout(10*60*1000);
 
         conn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
         conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 Safari/537.36");

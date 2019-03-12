@@ -4,7 +4,7 @@ public class Stock {
 
     private String busNo;//门店编码
     private String wareId;//商品编码
-    private double wareQty;//商品数量
+    private int wareQty;//商品数量
     private int sort;//类型
 
     public String getBusNo() {
@@ -23,11 +23,11 @@ public class Stock {
         this.wareId = wareId;
     }
 
-    public double getWareQty() {
+    public int getWareQty() {
         return wareQty;
     }
 
-    public void setWareQty(double wareQty) {
+    public void setWareQty(int wareQty) {
         this.wareQty = wareQty;
     }
 

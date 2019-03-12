@@ -18,7 +18,7 @@
     </update>
 
     <select id="selectStock" resultMap="BaseResultMap" resultType="java.util.List">
-        /*SELECT   CASE WHEN a.busno &lt;&gt; '501' THEN  1 ELSE 2 END  AS sort,A.busno,A.wareid,SUM(A.wareqty - A.awaitqty) AS WAREQTY
+        /*SELECT   CASE WHEN a.busno&lt;&gt; '501' THEN  1 ELSE 2 END  AS sort,A.busno,A.wareid,SUM(A.wareqty - A.awaitqty) AS WAREQTY
         FROM dbo.u_store_C A ,dbo.c_zone B ,dbo.c_stall C ,dbo.c_org_busi D
         WHERE A.busno = B.busno AND C.zoneno = B.zoneno AND C.stalltype ='11' AND  A.busno = D.busno
         AND (A.BUSNO = '501' OR D.orgtype = '20' OR D.orgtype = '20'  )
@@ -28,14 +28,22 @@
         FROM D_DCM_STORE
     </select>
 
+    <insert id="inserStoreLog" parameterType="java.util.List">
+        INSERT INTO D_DCM_STORE_LOG(BUSNO, WAREID, LASTTIME, RETURNMESS)
+        <foreach collection="list" item="item" index="index" separator="union all">
+            SELECT #{item.busno, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR}, #{item.lasttime, jdbcType=TIMESTAMP}, #{item.returnmess, jdbcType=VARCHAR}
+        </foreach>
+    </insert>
+
     <insert id="specialOutage" parameterType="com.hydee.ydky.entity.MachineSellOrder">
         INSERT INTO D_DCM_SALE_M(BUSNO, DCMNO, BILLNO, STATUS, CREATETIME, LASTTIME)
         VALUES(#{busno, jdbcType=VARCHAR}, #{dcmno, jdbcType=VARCHAR}, #{billno, jdbcType=VARCHAR},
         #{status, jdbcType=DECIMAL}, #{createTime, jdbcType=TIMESTAMP}, #{lastTime, jdbcType=TIMESTAMP})
 
-        INSERT INTO D_DCM_SALE_C(BILLNO, ROWID, WAREID, WAREQTY, SALEPRICE)
+        INSERT INTO D_DCM_SALE_C(BILLNO, ROWID, WAREID, WAREQTY, SALEPRICE, MAKENO)
         <foreach collection="detail" item="item" index="index" separator="union all">
-            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR}, #{item.wareqty, jdbcType=DECIMAL}, #{item.salePrice, jdbcType=DECIMAL}
+            SELECT #{item.billno, jdbcType=VARCHAR}, #{item.rowid, jdbcType=VARCHAR}, #{item.wareid, jdbcType=VARCHAR},
+            #{item.wareqty, jdbcType=DECIMAL}, #{item.salePrice, jdbcType=DECIMAL}, #{item.makeno, jdbcType=DECIMAL}
         </foreach>
     </insert>
 

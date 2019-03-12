@@ -19,7 +19,7 @@ public interface APIMachineService {
 
     int sell(MachineSellOrder order);
 
-    List<MachineOrder> selectApplyOrderByTime(String busno, Date timestamp);
+    List<MachineOrder> selectApplyOrderByTime(String busno, Date timestamp);//, String type
             ;
     List<MachineOrder> selectReturnOrderByTime(String busno, Date timestamp);
 

@@ -52,8 +52,8 @@ public class APIMachineServiceImpl implements APIMachineService {
     }
 
     @Override
-    public List<MachineOrder> selectApplyOrderByTime(String busno, Date timestamp) {
-        return machineMapper.selectApplyOrderByTime(busno, timestamp);
+    public List<MachineOrder> selectApplyOrderByTime(String busno, Date timestamp) {//, String type
+        return machineMapper.selectApplyOrderByTime(busno, timestamp);//, type
     }
 
     @Override

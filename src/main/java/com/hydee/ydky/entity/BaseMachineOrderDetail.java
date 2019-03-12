@@ -5,6 +5,7 @@ public class BaseMachineOrderDetail {
     private String rowid;//行号
     private String wareid;//商品编码
     private int wareqty;//商品数量
+    private String makeno; //批号
 
     public String getBillno() {
         return billno;
@@ -36,5 +37,13 @@ public class BaseMachineOrderDetail {
 
     public void setWareqty(int wareqty) {
         this.wareqty = wareqty;
+    }
+
+    public String getMakeno() {
+        return makeno;
+    }
+
+    public void setMakeno(String makeno) {
+        this.makeno = makeno;
     }
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -108,11 +110,11 @@ public class APIMachineController {
                 timestamp = orderLog.getuTime();
             }
             List list;
-            if(type == Enums.ORDER_LOG_TYPE_APPLY.getCode()){
-                list = apiMachineService.selectApplyOrderByTime(busno, timestamp);
-            }else if(type == Enums.ORDER_LOG_TYPE_RETURN.getCode()){
+            if(type == Enums.ORDER_LOG_TYPE_APPLY.getCode() || type == Enums.ORDER_LOG_TYPE_RETURN.getCode()){
+                list = apiMachineService.selectApplyOrderByTime(busno, timestamp);//, type == 0 ? "1" : "2"
+            }/*else if(type == Enums.ORDER_LOG_TYPE_RETURN.getCode()){
                 list = apiMachineService.selectReturnOrderByTime(busno, timestamp);
-            }else if(type == Enums.ORDER_LOG_TYPE_SELL.getCode()){
+            }*/else if(type == Enums.ORDER_LOG_TYPE_SELL.getCode()){
                 list = apiMachineService.selectSellOrderByTime(busno, timestamp);
             }else{
                 return ResponseObject.Create(Results.MACHINE_DCM_TYPE_NOT_fOUND);
@@ -135,9 +137,16 @@ public class APIMachineController {
      * @return
      */
     @PostMapping("/selectOrderByTimeCallback")
-    public Object selectOrderByTimeCallback(String busno, Long timestamp, int type){
+    public Object selectOrderByTimeCallback(String busno, String timestamp, int type){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date;
+        try {
+            date = sdf.parse(timestamp);
+        }catch (ParseException e){
+            return  ResponseObject.Failed();
+        }
         if(timestamp == null) return ResponseObject.Create(Results.MISSING_REQUEST_PARAMS);
-        int commit = apiMachineService.insertLastTime(busno, new Date(timestamp), type);
+        int commit = apiMachineService.insertLastTime(busno, date, type);
         if(commit > 0){
             return ResponseObject.Success();
         }else{

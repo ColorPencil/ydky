@@ -1,7 +1,7 @@
 ---
 # 项目启动端口
 server:
-  port: 8080
+  port: 8084
 #  servlet:
 #    context-path: /ydky
 
@@ -62,6 +62,8 @@ spring:
     queueCapacity: 25
     #分次请求单次最大数量配置
     commitCount: 5000
+    #定时器
+    cron: 0 0/10 * * * ?
     #2.8库存更改接口
     stockUpdateUrl: http://zhengyuan.nbxlmy.com/repertory/update.do
     #2.1新增门店-易点快药提供
@@ -77,7 +79,7 @@ mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.hydee.ydky.entity
   # 单次批处理插入最大执行数量配置(请不要随意扩大配置,导致服务器内存溢出)
-  batch-commitcount: 2000
+  batch-commitcount: 100
 
 ---
 # 系统配置参数

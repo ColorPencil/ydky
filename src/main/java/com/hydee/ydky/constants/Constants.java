@@ -39,5 +39,5 @@ public class Constants {
 	 */
 	public static final Short INTF_STATUS_DEFAULT_VALUE = 0;
 	
-	
+	public static final String DEFAULT_CRON = "0 0/30 * * * ?";
 }

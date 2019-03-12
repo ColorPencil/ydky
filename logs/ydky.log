@@ -1,104 +1,122 @@
-2018-12-07 15:03:17,609 INFO (StartupInfoLogger.java:50)- Starting MainApplication on DESKTOP-C8EOKAF with PID 24096 (D:\IdeaProjects\ydky\target\classes started by z in D:\IdeaProjects\ydky)
-2018-12-07 15:03:17,615 INFO (SpringApplication.java:652)- No active profile set, falling back to default profiles: default
-2018-12-07 15:03:17,680 INFO (AbstractApplicationContext.java:589)- Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@75d3a5e0: startup date [Fri Dec 07 15:03:17 CST 2018]; root of context hierarchy
-2018-12-07 15:03:18,324 INFO (XmlBeanDefinitionReader.java:316)- Loading XML bean definitions from class path resource [transaction.xml]
-2018-12-07 15:03:18,664 INFO (RepositoryConfigurationDelegate.java:163)- Multiple Spring Data modules found, entering strict repository configuration mode!
-2018-12-07 15:03:18,706 INFO (RepositoryConfigurationDelegate.java:163)- Multiple Spring Data modules found, entering strict repository configuration mode!
-2018-12-07 15:03:18,753 INFO (DefaultListableBeanFactory.java:824)- Overriding bean definition for bean 'org.springframework.transaction.config.internalTransactionAdvisor' with a different definition: replacing [Root bean: class [org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration; factoryMethodName=transactionAdvisor; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/transaction/annotation/ProxyTransactionManagementConfiguration.class]]
-2018-12-07 15:03:18,754 INFO (ConfigurationClassBeanDefinitionReader.java:306)- Skipping bean definition for [BeanMethod:name=transactionalEventListenerFactory,declaringClass=org.springframework.transaction.annotation.AbstractTransactionManagementConfiguration]: a definition for bean 'org.springframework.transaction.config.internalTransactionalEventListenerFactory' already exists. This top-level bean definition is considered as an override.
-2018-12-07 15:03:19,095 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'asyncConfig' of type [com.hydee.ydky.config.AsyncConfig$$EnhancerBySpringCGLIB$$1eeb5bf8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2018-12-07 15:03:19,096 INFO (AsyncConfig.java:32)- 线程配置：5-10-25
-2018-12-07 15:03:19,098 INFO (ExecutorConfigurationSupport.java:168)- Initializing ExecutorService 
-2018-12-07 15:03:19,192 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0' of type [org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2018-12-07 15:03:19,219 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d5abec94] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2018-12-07 15:03:19,345 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$6e59b4ce] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2018-12-07 15:03:19,354 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2018-12-07 15:03:19,359 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@661c46bc' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2018-12-07 15:03:19,367 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$932e5780] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2018-12-07 15:03:19,380 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2018-12-07 15:03:19,905 INFO (TomcatWebServer.java:91)- Tomcat initialized with port(s): 8080 (http)
-2018-12-07 15:03:19,918 INFO (DirectJDKLog.java:180)- Initializing ProtocolHandler ["http-nio-8080"]
-2018-12-07 15:03:19,926 INFO (DirectJDKLog.java:180)- Starting service [Tomcat]
-2018-12-07 15:03:19,926 INFO (DirectJDKLog.java:180)- Starting Servlet Engine: Apache Tomcat/8.5.28
-2018-12-07 15:03:19,930 INFO (DirectJDKLog.java:180)- The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;C:\Android;C:\Windows\System32;D:\Microsoft SQL Server\100\Tools\Binn\;D:\Microsoft SQL Server\100\DTS\Binn\;D:\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5.4 & MySQL Utilities 1.5.4 1.5\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5.4 & MySQL Utilities 1.5.4 1.5\Doctrine extensions for PHP\;D:\flutter\bin;"%ANDROID_SDK_HOME%\platform-tools;%ANDROID_SDK_HOME%\tools";C:\Users\z\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Bandizip\;C:\Users\z\AppData\Local\atom\bin;C:\Users\z\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.7.0_79\bin;;.]
-2018-12-07 15:03:20,049 INFO (DirectJDKLog.java:180)- Initializing Spring embedded WebApplicationContext
-2018-12-07 15:03:20,050 INFO (ServletWebServerApplicationContext.java:285)- Root WebApplicationContext: initialization completed in 2370 ms
-2018-12-07 15:03:20,338 INFO (AbstractFilterRegistrationBean.java:243)- Mapping filter: 'characterEncodingFilter' to: [/*]
-2018-12-07 15:03:20,339 INFO (AbstractFilterRegistrationBean.java:243)- Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2018-12-07 15:03:20,339 INFO (AbstractFilterRegistrationBean.java:243)- Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2018-12-07 15:03:20,339 INFO (AbstractFilterRegistrationBean.java:243)- Mapping filter: 'requestContextFilter' to: [/*]
-2018-12-07 15:03:20,339 INFO (AbstractFilterRegistrationBean.java:243)- Mapping filter: 'springSecurityFilterChain' to: [/*]
-2018-12-07 15:03:20,340 INFO (AbstractFilterRegistrationBean.java:256)- Mapping filter: 'webStatFilter' to urls: [/druid/**]
-2018-12-07 15:03:20,340 INFO (DirectJDKLog.java:180)- Suspicious url pattern: "/druid/**" in context [] - see sections 12.1 and 12.2 of the Servlet specification
-2018-12-07 15:03:20,340 INFO (ServletRegistrationBean.java:185)- Servlet statViewServlet mapped to [/druid/*]
-2018-12-07 15:03:20,342 INFO (ServletRegistrationBean.java:185)- Servlet dispatcherServlet mapped to [/]
-2018-12-07 15:03:27,330 INFO (DruidDataSource.java:947)- {dataSource-1} inited
-2018-12-07 15:03:27,392 INFO (LocalContainerEntityManagerFactoryBean.java:361)- Building JPA container EntityManagerFactory for persistence unit 'default'
-2018-12-07 15:03:27,414 INFO (LogHelper.java:31)- HHH000204: Processing PersistenceUnitInfo [
+2019-01-24 09:44:08,941 INFO (StartupInfoLogger.java:50)- Starting MainApplication on 2-zengrong with PID 9008 (D:\IdeaProjects\ydky\target\classes started by z in D:\IdeaProjects\ydky)
+2019-01-24 09:44:08,949 INFO (SpringApplication.java:652)- No active profile set, falling back to default profiles: default
+2019-01-24 09:44:09,034 INFO (AbstractApplicationContext.java:589)- Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@548d708a: startup date [Thu Jan 24 09:44:09 CST 2019]; root of context hierarchy
+2019-01-24 09:44:09,843 INFO (XmlBeanDefinitionReader.java:316)- Loading XML bean definitions from class path resource [transaction.xml]
+2019-01-24 09:44:10,123 INFO (RepositoryConfigurationDelegate.java:163)- Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-01-24 09:44:10,153 INFO (RepositoryConfigurationDelegate.java:163)- Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-01-24 09:44:10,190 INFO (DefaultListableBeanFactory.java:824)- Overriding bean definition for bean 'org.springframework.transaction.config.internalTransactionAdvisor' with a different definition: replacing [Root bean: class [org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration; factoryMethodName=transactionAdvisor; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/transaction/annotation/ProxyTransactionManagementConfiguration.class]]
+2019-01-24 09:44:10,191 INFO (ConfigurationClassBeanDefinitionReader.java:306)- Skipping bean definition for [BeanMethod:name=transactionalEventListenerFactory,declaringClass=org.springframework.transaction.annotation.AbstractTransactionManagementConfiguration]: a definition for bean 'org.springframework.transaction.config.internalTransactionalEventListenerFactory' already exists. This top-level bean definition is considered as an override.
+2019-01-24 09:44:10,518 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'asyncConfig' of type [com.hydee.ydky.config.AsyncConfig$$EnhancerBySpringCGLIB$$eb4305f2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-24 09:44:10,519 INFO (AsyncConfig.java:32)- 线程配置：5-10-25
+2019-01-24 09:44:10,521 INFO (ExecutorConfigurationSupport.java:168)- Initializing ExecutorService 
+2019-01-24 09:44:10,597 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0' of type [org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-24 09:44:10,623 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a203968e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-24 09:44:10,729 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$3ab15ec8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-24 09:44:10,739 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-24 09:44:10,743 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@63716833' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-24 09:44:10,747 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$5f86017a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-24 09:44:10,760 INFO (PostProcessorRegistrationDelegate.java:328)- Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-24 09:44:11,133 INFO (TomcatWebServer.java:91)- Tomcat initialized with port(s): 8080 (http)
+2019-01-24 09:44:11,144 INFO (DirectJDKLog.java:180)- Initializing ProtocolHandler ["http-nio-8080"]
+2019-01-24 09:44:11,151 INFO (DirectJDKLog.java:180)- Starting service [Tomcat]
+2019-01-24 09:44:11,151 INFO (DirectJDKLog.java:180)- Starting Servlet Engine: Apache Tomcat/8.5.28
+2019-01-24 09:44:11,155 INFO (DirectJDKLog.java:180)- The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;C:\Android;C:\Windows\System32;D:\Microsoft SQL Server\100\Tools\Binn\;D:\Microsoft SQL Server\100\DTS\Binn\;D:\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5.4 & MySQL Utilities 1.5.4 1.5\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5.4 & MySQL Utilities 1.5.4 1.5\Doctrine extensions for PHP\;D:\flutter\bin;"%ANDROID_SDK_HOME%\platform-tools;%ANDROID_SDK_HOME%\tools";C:\Users\z\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Bandizip\;C:\Users\z\AppData\Local\atom\bin;C:\Users\z\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_181\bin;D:\apache-maven-3.6.0\bin;;.]
+2019-01-24 09:44:11,272 INFO (DirectJDKLog.java:180)- Initializing Spring embedded WebApplicationContext
+2019-01-24 09:44:11,273 INFO (ServletWebServerApplicationContext.java:285)- Root WebApplicationContext: initialization completed in 2239 ms
+2019-01-24 09:44:11,548 INFO (AbstractFilterRegistrationBean.java:243)- Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-01-24 09:44:11,548 INFO (AbstractFilterRegistrationBean.java:243)- Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-01-24 09:44:11,548 INFO (AbstractFilterRegistrationBean.java:243)- Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-01-24 09:44:11,548 INFO (AbstractFilterRegistrationBean.java:243)- Mapping filter: 'requestContextFilter' to: [/*]
+2019-01-24 09:44:11,549 INFO (AbstractFilterRegistrationBean.java:243)- Mapping filter: 'springSecurityFilterChain' to: [/*]
+2019-01-24 09:44:11,549 INFO (AbstractFilterRegistrationBean.java:256)- Mapping filter: 'webStatFilter' to urls: [/druid/**]
+2019-01-24 09:44:11,549 INFO (DirectJDKLog.java:180)- Suspicious url pattern: "/druid/**" in context [] - see sections 12.1 and 12.2 of the Servlet specification
+2019-01-24 09:44:11,549 INFO (ServletRegistrationBean.java:185)- Servlet statViewServlet mapped to [/druid/*]
+2019-01-24 09:44:11,550 INFO (ServletRegistrationBean.java:185)- Servlet dispatcherServlet mapped to [/]
+2019-01-24 09:44:17,599 INFO (DruidDataSource.java:947)- {dataSource-1} inited
+2019-01-24 09:44:17,638 INFO (LocalContainerEntityManagerFactoryBean.java:361)- Building JPA container EntityManagerFactory for persistence unit 'default'
+2019-01-24 09:44:17,653 INFO (LogHelper.java:31)- HHH000204: Processing PersistenceUnitInfo [
 	name: default
 	...]
-2018-12-07 15:03:27,516 INFO (Version.java:45)- HHH000412: Hibernate Core {5.2.14.Final}
-2018-12-07 15:03:27,518 INFO (Environment.java:213)- HHH000206: hibernate.properties not found
-2018-12-07 15:03:27,578 INFO (JavaReflectionManager.java:66)- HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
-2018-12-07 15:03:27,737 INFO (Dialect.java:157)- HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
-2018-12-07 15:03:28,149 INFO (AbstractEntityManagerFactoryBean.java:394)- Initialized JPA EntityManagerFactory for persistence unit 'default'
-2018-12-07 15:03:29,106 INFO (UserDetailsServiceAutoConfiguration.java:82)- 
+2019-01-24 09:44:17,712 INFO (Version.java:45)- HHH000412: Hibernate Core {5.2.14.Final}
+2019-01-24 09:44:17,713 INFO (Environment.java:213)- HHH000206: hibernate.properties not found
+2019-01-24 09:44:17,746 INFO (JavaReflectionManager.java:66)- HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2019-01-24 09:44:17,870 INFO (Dialect.java:157)- HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+2019-01-24 09:44:18,263 INFO (AbstractEntityManagerFactoryBean.java:394)- Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-01-24 09:44:19,460 INFO (UserDetailsServiceAutoConfiguration.java:82)- 
 
-Using generated security password: ce83271f-9b99-4b14-a265-6157ab5aded7
+Using generated security password: c6cba5bf-6cfd-4727-87c8-c70992a1d803
 
-2018-12-07 15:03:29,226 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/index'], []
-2018-12-07 15:03:29,226 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/'], []
-2018-12-07 15:03:29,226 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/error/**'], []
-2018-12-07 15:03:29,227 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/upload/**'], []
-2018-12-07 15:03:29,227 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/image/**'], []
-2018-12-07 15:03:29,227 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/file/**'], []
-2018-12-07 15:03:29,227 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/media/**'], []
-2018-12-07 15:03:29,227 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/getCode'], []
-2018-12-07 15:03:29,227 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/qrCode/**'], []
-2018-12-07 15:03:29,227 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/barCode/**'], []
-2018-12-07 15:03:29,228 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/static/**'], []
-2018-12-07 15:03:29,228 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/img/**'], []
-2018-12-07 15:03:29,228 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/css/**'], []
-2018-12-07 15:03:29,228 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/fonts/**'], []
-2018-12-07 15:03:29,228 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/font-awesome/**'], []
-2018-12-07 15:03:29,228 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/js/**'], []
-2018-12-07 15:03:29,228 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/favicon.ico'], []
-2018-12-07 15:03:29,229 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/druid/**'], []
-2018-12-07 15:03:29,417 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34c7232c, org.springframework.security.web.context.SecurityContextPersistenceFilter@35025a0a, org.springframework.security.web.header.HeaderWriterFilter@5b02a984, org.springframework.security.web.authentication.logout.LogoutFilter@6ddd1c51, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@26f0141, org.springframework.security.web.session.ConcurrentSessionFilter@67acfde9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7c70aae1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5968800d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@50ec4bfc, org.springframework.security.web.session.SessionManagementFilter@391d1e33, org.springframework.security.web.access.ExceptionTranslationFilter@76216830, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@11f23038]
-2018-12-07 15:03:30,698 INFO (RequestMappingHandlerAdapter.java:567)- Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@75d3a5e0: startup date [Fri Dec 07 15:03:17 CST 2018]; root of context hierarchy
-2018-12-07 15:03:30,758 WARN (JpaBaseConfiguration.java:235)- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2018-12-07 15:03:30,795 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api],methods=[GET]}" onto public java.lang.String com.hydee.ydky.controller.api.APIController.index()
-2018-12-07 15:03:30,796 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/test],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIController.test()
-2018-12-07 15:03:30,796 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIController.postIndex()
-2018-12-07 15:03:30,798 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/enter/newStore],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIEnterController.store(com.hydee.ydky.entity.EnterStore)
-2018-12-07 15:03:30,798 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/enter/goodsInfo]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIEnterController.goods(java.lang.Integer,java.lang.Integer)
-2018-12-07 15:03:30,799 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/enter/newMachine],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIEnterController.machine(com.hydee.ydky.entity.EnterMachine)
-2018-12-07 15:03:30,801 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/apply],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.apply(com.hydee.ydky.entity.MachineOrder)
-2018-12-07 15:03:30,801 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/selectNewOrder]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.selectOrderByTime(java.lang.String,int)
-2018-12-07 15:03:30,801 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/updateReturnOrder],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.updateReturnOrder(java.util.List<com.hydee.ydky.entity.MachineOrder>)
-2018-12-07 15:03:30,802 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/selectOrderByTimeCallback],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.selectOrderByTimeCallback(java.lang.String,java.lang.Long,int)
-2018-12-07 15:03:30,802 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/sell],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.sell(com.hydee.ydky.entity.MachineSellOrder)
-2018-12-07 15:03:30,802 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/return],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.dcmReturn(com.hydee.ydky.entity.MachineOrder)
-2018-12-07 15:03:30,803 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/updateApplyOrder],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.updateApplyOrder(java.util.List<com.hydee.ydky.entity.MachineOrder>)
-2018-12-07 15:03:30,804 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/stock/specialOutage],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIStockController.specialOutage(com.hydee.ydky.entity.MachineSellOrder)
-2018-12-07 15:03:30,804 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/index],methods=[GET]}" onto public java.lang.String com.hydee.ydky.controller.IndexController.index(org.springframework.ui.ModelMap) throws java.lang.Exception
-2018-12-07 15:03:30,807 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2018-12-07 15:03:30,808 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2018-12-07 15:03:30,854 INFO (AbstractUrlHandlerMapping.java:360)- Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
-2018-12-07 15:03:30,892 INFO (AbstractUrlHandlerMapping.java:373)- Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-12-07 15:03:30,892 INFO (AbstractUrlHandlerMapping.java:373)- Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-12-07 15:03:30,923 INFO (ExceptionHandlerExceptionResolver.java:289)- Detected @ExceptionHandler methods in globalExceptionAdvice
-2018-12-07 15:03:30,968 INFO (AbstractUrlHandlerMapping.java:373)- Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2018-12-07 15:03:31,115 INFO (WelcomePageHandlerMapping.java:61)- Adding welcome page template: index
-2018-12-07 15:03:31,946 INFO (MBeanExporter.java:434)- Registering beans for JMX exposure on startup
-2018-12-07 15:03:31,947 INFO (MBeanExporter.java:896)- Bean with name 'dataSource' has been autodetected for JMX exposure
-2018-12-07 15:03:31,947 INFO (MBeanExporter.java:896)- Bean with name 'wallConfig' has been autodetected for JMX exposure
-2018-12-07 15:03:31,953 INFO (MBeanExporter.java:669)- Located MBean 'wallConfig': registering with JMX server as MBean [com.alibaba.druid.wall:name=wallConfig,type=WallConfig]
-2018-12-07 15:03:31,954 INFO (MBeanExporter.java:669)- Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
-2018-12-07 15:03:31,971 INFO (DirectJDKLog.java:180)- Starting ProtocolHandler ["http-nio-8080"]
-2018-12-07 15:03:31,979 INFO (DirectJDKLog.java:180)- Using a shared selector for servlet write/read
-2018-12-07 15:03:31,998 INFO (TomcatWebServer.java:205)- Tomcat started on port(s): 8080 (http) with context path ''
-2018-12-07 15:03:32,002 INFO (StartupInfoLogger.java:59)- Started MainApplication in 14.967 seconds (JVM running for 16.522)
-2018-12-07 15:03:33,466 INFO (DirectJDKLog.java:180)- Initializing Spring FrameworkServlet 'dispatcherServlet'
-2018-12-07 15:03:33,466 INFO (FrameworkServlet.java:494)- FrameworkServlet 'dispatcherServlet': initialization started
-2018-12-07 15:03:33,497 INFO (FrameworkServlet.java:513)- FrameworkServlet 'dispatcherServlet': initialization completed in 31 ms
+2019-01-24 09:44:19,659 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/index'], []
+2019-01-24 09:44:19,661 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/'], []
+2019-01-24 09:44:19,670 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/error/**'], []
+2019-01-24 09:44:19,675 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/upload/**'], []
+2019-01-24 09:44:19,675 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/image/**'], []
+2019-01-24 09:44:19,676 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/file/**'], []
+2019-01-24 09:44:19,676 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/media/**'], []
+2019-01-24 09:44:19,676 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/getCode'], []
+2019-01-24 09:44:19,677 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/qrCode/**'], []
+2019-01-24 09:44:19,677 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/barCode/**'], []
+2019-01-24 09:44:19,677 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/static/**'], []
+2019-01-24 09:44:19,678 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/img/**'], []
+2019-01-24 09:44:19,678 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/css/**'], []
+2019-01-24 09:44:19,678 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/fonts/**'], []
+2019-01-24 09:44:19,678 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/font-awesome/**'], []
+2019-01-24 09:44:19,679 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/js/**'], []
+2019-01-24 09:44:19,679 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/favicon.ico'], []
+2019-01-24 09:44:19,679 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: Ant [pattern='/druid/**'], []
+2019-01-24 09:44:19,905 INFO (DefaultSecurityFilterChain.java:43)- Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@216372b7, org.springframework.security.web.context.SecurityContextPersistenceFilter@24134cbc, org.springframework.security.web.header.HeaderWriterFilter@7c588adc, org.springframework.security.web.authentication.logout.LogoutFilter@119290b9, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2dc39b53, org.springframework.security.web.session.ConcurrentSessionFilter@15605d83, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@22f02996, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@637c840d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14b4340c, org.springframework.security.web.session.SessionManagementFilter@5968800d, org.springframework.security.web.access.ExceptionTranslationFilter@4ef18604, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@16cb9989]
+2019-01-24 09:44:21,014 INFO (RequestMappingHandlerAdapter.java:567)- Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@548d708a: startup date [Thu Jan 24 09:44:09 CST 2019]; root of context hierarchy
+2019-01-24 09:44:21,064 WARN (JpaBaseConfiguration.java:235)- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-01-24 09:44:21,095 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api],methods=[GET]}" onto public java.lang.String com.hydee.ydky.controller.api.APIController.index()
+2019-01-24 09:44:21,096 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/test],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIController.test()
+2019-01-24 09:44:21,096 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIController.postIndex()
+2019-01-24 09:44:21,098 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/enter/newStore],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIEnterController.store(com.hydee.ydky.entity.EnterStore)
+2019-01-24 09:44:21,099 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/enter/goodsInfo]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIEnterController.goods(java.lang.Integer,java.lang.Integer)
+2019-01-24 09:44:21,099 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/enter/newMachine],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIEnterController.machine(com.hydee.ydky.entity.EnterMachine)
+2019-01-24 09:44:21,101 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/apply],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.apply(com.hydee.ydky.entity.MachineOrder)
+2019-01-24 09:44:21,101 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/updateApplyOrder],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.updateApplyOrder(java.util.List<com.hydee.ydky.entity.MachineOrder>)
+2019-01-24 09:44:21,101 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/return],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.dcmReturn(com.hydee.ydky.entity.MachineOrder)
+2019-01-24 09:44:21,102 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/sell],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.sell(com.hydee.ydky.entity.MachineSellOrder)
+2019-01-24 09:44:21,102 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/selectOrderByTimeCallback],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.selectOrderByTimeCallback(java.lang.String,java.lang.String,int)
+2019-01-24 09:44:21,103 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/selectNewOrder]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.selectOrderByTime(java.lang.String,int)
+2019-01-24 09:44:21,103 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/machine/updateReturnOrder],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIMachineController.updateReturnOrder(java.util.List<com.hydee.ydky.entity.MachineOrder>)
+2019-01-24 09:44:21,104 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/api/stock/specialOutage],methods=[POST]}" onto public java.lang.Object com.hydee.ydky.controller.api.APIStockController.specialOutage(com.hydee.ydky.entity.MachineSellOrder)
+2019-01-24 09:44:21,105 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/index],methods=[GET]}" onto public java.lang.String com.hydee.ydky.controller.IndexController.index(org.springframework.ui.ModelMap) throws java.lang.Exception
+2019-01-24 09:44:21,109 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-01-24 09:44:21,110 INFO (AbstractHandlerMethodMapping.java:548)- Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-01-24 09:44:21,158 INFO (AbstractUrlHandlerMapping.java:360)- Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2019-01-24 09:44:21,194 INFO (AbstractUrlHandlerMapping.java:373)- Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-24 09:44:21,194 INFO (AbstractUrlHandlerMapping.java:373)- Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-24 09:44:21,221 INFO (ExceptionHandlerExceptionResolver.java:289)- Detected @ExceptionHandler methods in globalExceptionAdvice
+2019-01-24 09:44:21,268 INFO (AbstractUrlHandlerMapping.java:373)- Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-01-24 09:44:21,506 INFO (WelcomePageHandlerMapping.java:61)- Adding welcome page template: index
+2019-01-24 09:44:22,467 INFO (MBeanExporter.java:434)- Registering beans for JMX exposure on startup
+2019-01-24 09:44:22,468 INFO (MBeanExporter.java:896)- Bean with name 'dataSource' has been autodetected for JMX exposure
+2019-01-24 09:44:22,468 INFO (MBeanExporter.java:896)- Bean with name 'wallConfig' has been autodetected for JMX exposure
+2019-01-24 09:44:22,474 INFO (MBeanExporter.java:669)- Located MBean 'wallConfig': registering with JMX server as MBean [com.alibaba.druid.wall:name=wallConfig,type=WallConfig]
+2019-01-24 09:44:22,477 INFO (MBeanExporter.java:669)- Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2019-01-24 09:44:22,503 INFO (DirectJDKLog.java:180)- Starting ProtocolHandler ["http-nio-8080"]
+2019-01-24 09:44:22,513 INFO (DirectJDKLog.java:180)- Using a shared selector for servlet write/read
+2019-01-24 09:44:22,529 INFO (TomcatWebServer.java:205)- Tomcat started on port(s): 8080 (http) with context path ''
+2019-01-24 09:44:22,535 INFO (StartupInfoLogger.java:59)- Started MainApplication in 14.062 seconds (JVM running for 15.234)
+2019-01-24 09:44:22,595 INFO (DirectJDKLog.java:180)- Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-01-24 09:44:22,595 INFO (FrameworkServlet.java:494)- FrameworkServlet 'dispatcherServlet': initialization started
+2019-01-24 09:44:22,615 INFO (FrameworkServlet.java:513)- FrameworkServlet 'dispatcherServlet': initialization completed in 20 ms
+2019-01-24 09:45:42,979 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT ITIME, UTIME, BUSNO, TYPE FROM D_DCM_GET_LOG WHERE TYPE = ? AND BUSNO = ? 
+2019-01-24 09:45:43,007 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 0(Integer), 639(String)
+2019-01-24 09:45:43,079 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 0
+2019-01-24 09:45:43,097 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT M.BUSNO, M.DCMNO, M.BILLNO, M.STATUS, M.CREATETIME, M.LASTTIME, C.ROWID, C.WAREID, C.WAREQTY, C.PURPRICE, C.TYPE FROM D_DCM_APPLY_M M LEFT JOIN D_DCM_APPLY_C C ON M.BILLNO = C.BILLNO WHERE M.STATUS = 0 AND BUSNO = ? AND C.TYPE = ? 
+2019-01-24 09:45:43,097 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 639(String), 1(String)
+2019-01-24 09:45:43,189 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 0
+2019-01-24 09:45:43,355 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT ITIME, UTIME, BUSNO, TYPE FROM D_DCM_GET_LOG WHERE TYPE = ? AND BUSNO = ? 
+2019-01-24 09:45:43,356 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 1(Integer), 639(String)
+2019-01-24 09:45:43,389 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 0
+2019-01-24 09:45:43,390 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT M.BUSNO, M.DCMNO, M.BILLNO, M.STATUS, M.CREATETIME, M.LASTTIME, C.ROWID, C.WAREID, C.WAREQTY, C.PURPRICE, C.TYPE FROM D_DCM_APPLY_M M LEFT JOIN D_DCM_APPLY_C C ON M.BILLNO = C.BILLNO WHERE M.STATUS = 0 AND BUSNO = ? AND C.TYPE = ? 
+2019-01-24 09:45:43,391 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 639(String), 2(String)
+2019-01-24 09:45:43,424 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 0
+2019-01-24 09:45:43,434 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT ITIME, UTIME, BUSNO, TYPE FROM D_DCM_GET_LOG WHERE TYPE = ? AND BUSNO = ? 
+2019-01-24 09:45:43,435 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 2(Integer), 639(String)
+2019-01-24 09:45:43,466 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 0
+2019-01-24 09:45:43,467 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: SELECT M.BUSNO, M.DCMNO, M.BILLNO, M.CREATETIME, M.LASTTIME, C.ROWID, C.WAREID, C.WAREQTY, C.SALEPRICE FROM D_DCM_SALE_M M LEFT JOIN D_DCM_SALE_C C ON M.BILLNO = C.BILLNO WHERE M.STATUS = 0 AND BUSNO = ? 
+2019-01-24 09:45:43,468 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 639(String)
+2019-01-24 09:45:43,540 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 0

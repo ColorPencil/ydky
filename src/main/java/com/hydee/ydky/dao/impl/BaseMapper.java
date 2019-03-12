@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
+@SuppressWarnings("rawtypes")
 @Repository
 public class BaseMapper {
 	// 批处理一次最大执行数量
@@ -26,7 +27,7 @@ public class BaseMapper {
      * @param list			：待插入数据集合
      * @return
      */
-	public <T> Integer batchInsert(String namespace, String method, List<T> list) {
+	public Integer batchInsert(Class cls, String namespace, String method, List list) {
 		if(list == null || list.isEmpty()) return 0;
     	int addCount = 0;
     	SqlSession session = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BATCH, false);
@@ -55,14 +56,14 @@ public class BaseMapper {
 	 * @param list
 	 * @return
 	 */
-	public <T> Integer batchInsertEx(String namespace, String method, List<T> list) {
+	public Integer batchInsert(String namespace, String method, List list) {
 		if(list == null || list.isEmpty()) return 0;
     	int addCount = 0;
     	SqlSession session = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BATCH, false);
     	String statement = namespace + "." + method;
 		try{
 			// 避免集合数据量过大导致Mybatis报参数异常,从而分批处理数据
-			int maxNum = list.size()%MAX_BATCH_NUM == 0 ? list.size()/2000 : (list.size()/2000+1);
+			int maxNum = list.size()%MAX_BATCH_NUM == 0 ? list.size()/MAX_BATCH_NUM : (list.size()/MAX_BATCH_NUM+1);
 			for(int i=0;i<maxNum;i++) {
 				int dataSize = list.size() > MAX_BATCH_NUM*(i+1) ? MAX_BATCH_NUM*(i+1) : list.size();
 				addCount += sqlSessionTemplate.insert(statement, list.subList(MAX_BATCH_NUM*i, dataSize));
@@ -105,7 +106,7 @@ public class BaseMapper {
      * @return
      * @throws Exception
      */
-    public <T> Integer batchUpdate(String str, List<T> list) throws RuntimeException
+    public Integer batchUpdate(String str, List list) throws RuntimeException
     {
     	int count = 0;
         SqlSessionFactory sqlSessionFactory = sqlSessionTemplate.getSqlSessionFactory();
@@ -137,7 +138,7 @@ public class BaseMapper {
      * @return
      * @throws RuntimeException
      */
-    public <T> Integer batchDelete(String str,List<T> list) throws RuntimeException{
+    public Integer batchDelete(String str,List list) throws RuntimeException{
     	int delCount = 0;
     	SqlSession session = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BATCH, false);
 		try{

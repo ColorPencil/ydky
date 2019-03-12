@@ -32,4 +32,10 @@ public class APIStockController {
             return ResponseObject.Failed();
         }
     }
+
+    /*@RequestMapping("/test")
+    public String test(){
+        apiStockService.stockUpdate();
+        return "test";
+    }*/
 }

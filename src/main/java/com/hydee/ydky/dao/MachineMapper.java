@@ -24,7 +24,7 @@ public interface MachineMapper {
 
     int insertSellOrder(MachineSellOrder order);
 
-    List<MachineOrder> selectApplyOrderByTime(@Param("busno") String busno, @Param("timestamp") Date timestamp);
+    List<MachineOrder> selectApplyOrderByTime(@Param("busno") String busno, @Param("timestamp") Date timestamp);//, @Param("type") String type
 
     List<MachineOrder> selectReturnOrderByTime(@Param("busno") String busno, @Param("timestamp") Date timestamp);
 
