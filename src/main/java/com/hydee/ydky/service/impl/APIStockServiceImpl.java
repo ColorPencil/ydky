@@ -47,7 +47,7 @@ public class APIStockServiceImpl implements APIStockService {
         int pageCount = size % commitCount == 0 ? size / commitCount : size / commitCount + 1;
 
         logger.info("数据拉取完成，size="+size+" pageCount:" + pageCount);
-        //循环插入
+        //循环推送数据
         for (int i = 0; i < pageCount; i++) {
             int pageSize;
             if(i >= pageCount - 1){
