@@ -95,7 +95,7 @@ public class APIMachineController {
     /**
      * 小程序调用
      * 查询指定更新时间之后的补货单据
-     * @param type
+     * @param type 0:补货 1:退货 2:零售
      * @return
      */
     @RequestMapping("/selectNewOrder")
@@ -110,6 +110,7 @@ public class APIMachineController {
                 timestamp = orderLog.getuTime();
             }
             List list;
+            //查询数据
             if(type == Enums.ORDER_LOG_TYPE_APPLY.getCode() || type == Enums.ORDER_LOG_TYPE_RETURN.getCode()){
                 list = apiMachineService.selectApplyOrderByTime(busno, timestamp);//, type == 0 ? "1" : "2"
             }/*else if(type == Enums.ORDER_LOG_TYPE_RETURN.getCode()){

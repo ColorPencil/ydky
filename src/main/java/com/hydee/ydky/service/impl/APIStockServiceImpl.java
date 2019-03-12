@@ -38,16 +38,16 @@ public class APIStockServiceImpl implements APIStockService {
     @Override
     public void stockUpdate() {
         logger.info("数据拉取开始...");
+        //执行存储过程生成库存数据
         int num = stockMapper.autoGenerateStore();
-        /*if(num <= 0){
-            logger.info("没有更新数据");
-            return;
-        }*/
+        //查询库存
         List<Stock> list = stockMapper.selectStock();
         int size = list.size();
+        //根据条数来分页
         int pageCount = size % commitCount == 0 ? size / commitCount : size / commitCount + 1;
 
         logger.info("数据拉取完成，size="+size+" pageCount:" + pageCount);
+        //循环插入
         for (int i = 0; i < pageCount; i++) {
             int pageSize;
             if(i >= pageCount - 1){
@@ -61,25 +61,22 @@ public class APIStockServiceImpl implements APIStockService {
             Map<String, String> head = new HashMap<>();
             head.put("Content-Type", "application/json;charset=utf-8");
             logger.info("数据推送中...");
+            //向对方接口推送数据
             String result = HttpUtils.post(stockUpdateUrl, JSON.toJSONString(stocks), head);
             JSONObject jsonObject = JSONObject.parseObject(result);
+            //获取返回的失败条数
             JSONArray jsonArray = jsonObject.getJSONArray("data");
             if(jsonArray.size() > 0){
                 logger.info("插入错误日志开始， 条数："+jsonArray.size());
                 List<StoreLog> storeLogs = new ArrayList<>();
                 Date date = new Date();
+                //循环插入错误日志
                 for (int j = 0; j < jsonArray.size(); j++) {
                     JSONObject cdata = jsonArray.getJSONObject(j);
                     String wareid = cdata.getString("wareid");
                     String busno = cdata.getString("busNo");
                     String mes = cdata.getString("mes");
                     storeLogs.add(new StoreLog(busno, wareid, date, mes));
-                    /*for (int k = 0; k < stocks.size(); k++) {
-                        Stock stock = stocks.get(k);
-                        if(wareid.trim().equalsIgnoreCase(stock.getWareId().trim())){
-                            storeLogs.add(new StoreLog(stock.getBusNo(), stock.getWareId(), date, mes));
-                        }
-                    }*/
                 }
                 baseMapper.batchInsert("com.hydee.ydky.dao.StockMapper", "inserStoreLog", storeLogs);
 //                stockMapper.inserStoreLog(storeLogs);
